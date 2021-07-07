@@ -191,5 +191,12 @@ django_heroku.settings(locals())
 OSCAR_SHOP_NAME = 'Slabshop'
 OSCAR_MAX_BASKET_QUANTITY_THRESHOLD = 20
 OSCAR_DEFAULT_CURRENCY = 'UZS'
-OSCAR_REQUIRED_ADDRESS_FIELDS = ('first_name', 'line1', 'line4', 'postcode', 'country')
+OSCAR_REQUIRED_ADDRESS_FIELDS = ('first_name', 'line1', 'line4')
 OSCAR_MODERATE_REVIEWS = True
+OSCAR_CURRENCY_FORMAT = {
+    'UZS': {
+        'currency_digits': False,
+        'format': '#,##0\xa0¤',
+
+    }
+}
