@@ -71,6 +71,10 @@ INSTALLED_APPS = [
     'treebeard',
     'sorl.thumbnail',   # Default thumbnail backend, can be replaced
     'django_tables2',
+
+    # API
+    'rest_framework',
+    'oscarapi',
 ]
 
 SITE_ID = 1
@@ -193,10 +197,11 @@ OSCAR_MAX_BASKET_QUANTITY_THRESHOLD = 20
 OSCAR_DEFAULT_CURRENCY = 'UZS'
 OSCAR_REQUIRED_ADDRESS_FIELDS = ('first_name', 'line1', 'line4')
 OSCAR_MODERATE_REVIEWS = True
-OSCAR_CURRENCY_FORMAT = {
-    'UZS': {
-        'currency_digits': False,
-        'format': '#,##0\xa0¤',
-
-    }
+OSCAR_CURRENCY_FORMAT = {'UZS': {'currency_digits': False, 'format': '#,##0\xa0¤',}}
+OSCAR_INITIAL_ORDER_STATUS = 'Pending'
+OSCAR_INITIAL_LINE_STATUS = 'Pending'
+OSCAR_ORDER_STATUS_PIPELINE = {
+    'Pending': ('Being processed', 'Cancelled',),
+    'Being processed': ('Processed', 'Cancelled',),
+    'Cancelled': (),
 }
