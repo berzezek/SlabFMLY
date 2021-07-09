@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'oscar.apps.analytics.apps.AnalyticsConfig',
     'oscar.apps.checkout.apps.CheckoutConfig',
     'oscar.apps.address.apps.AddressConfig',
-    'oscar.apps.shipping.apps.ShippingConfig',
+    # 'oscar.apps.shipping.apps.ShippingConfig',
     'oscar.apps.catalogue.apps.CatalogueConfig',
     'oscar.apps.catalogue.reviews.apps.CatalogueReviewsConfig',
     'oscar.apps.communication.apps.CommunicationConfig',
@@ -75,6 +75,8 @@ INSTALLED_APPS = [
     # API
     'rest_framework',
     'oscarapi',
+
+    'plus.shipping.apps.ShippingConfig'
 ]
 
 SITE_ID = 1
@@ -186,22 +188,51 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = "static"
 
+STATICFILES_DIRS = [
+
+    os.path.join(BASE_DIR, 'static'),
+
+    os.path.join(BASE_DIR, 'media'),
+
+]
 
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
 django_heroku.settings(locals())
 
-OSCAR_SHOP_NAME = 'Slabshop'
+OSCAR_SHOP_NAME = 'Slab'
+OSCAR_SHOP_TAGLINE = 'boardshop'
 OSCAR_MAX_BASKET_QUANTITY_THRESHOLD = 20
 OSCAR_DEFAULT_CURRENCY = 'UZS'
-OSCAR_REQUIRED_ADDRESS_FIELDS = ('first_name', 'line1', 'line4')
+OSCAR_REQUIRED_ADDRESS_FIELDS = ('first_name', 'line1', 'line4', 'phone_number')
 OSCAR_MODERATE_REVIEWS = True
 OSCAR_CURRENCY_FORMAT = {'UZS': {'currency_digits': False, 'format': '#,##0\xa0¤',}}
-OSCAR_INITIAL_ORDER_STATUS = 'Pending'
-OSCAR_INITIAL_LINE_STATUS = 'Pending'
+OSCAR_INITIAL_ORDER_STATUS = 'В ожидании'
+OSCAR_INITIAL_LINE_STATUS = 'В ожидании'
 OSCAR_ORDER_STATUS_PIPELINE = {
-    'Pending': ('Being processed', 'Cancelled',),
-    'Being processed': ('Processed', 'Cancelled',),
-    'Cancelled': (),
+    'В ожидании': ('Обрабатывается', 'Отменен',),
+    'Обрабатывается': ('Обработан', 'Отменен',),
+    'Отменен': (),
 }
+
+# OSCAR_SEARCH_FACETS = {
+#     'fields': OrderedDict([
+#         ('product_class', {'name': ('Type'), 'field': 'product_class'}),
+#         ('rating', {'name': ('Rating'), 'field': 'rating'}),
+#     ]),
+#     'queries': OrderedDict([
+#         ('price_range',
+#          {
+#              'name': ('Price range'),
+#              'field': 'price',
+#              'queries': [
+#                  # This is a list of (name, query) tuples where the name will
+#                  # be displayed on the front-end.
+#                  (('0 to 500_000'), '[0 TO 500.000]'),
+#                  (('500_000 to 1_000_000'), '[500.000 TO 1.000.000]'),
+#                  (('1_000_000+'), '[1000000 TO *]'),
+#              ]
+#          }),
+#     ]),
+# }

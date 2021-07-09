@@ -1,0 +1,25 @@
+{% extends "oscar/basket/partials/basket_totals.html" %}
+{% load i18n %}
+{% load currency_filters %}
+{% load shipping_tags %}
+
+
+
+            {% block shipping_totals %}
+                <tr>
+                    <th>&nbsp;</th>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th colspan="2">
+                        <h3>{% trans "Shipping" %}</h3>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="total"></th>
+                    <td class="total text-right">Индивидуально</td>
+                </tr>
+
+
+            {% endblock %}
