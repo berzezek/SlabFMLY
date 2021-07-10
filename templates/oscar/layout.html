@@ -1,7 +1,10 @@
-{% extends "oscar/layout.html" %}
+{% extends 'oscar/layout.html' %}
+
 {% load static %}
 
-
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
+{% endblock %}
 
 {% block layout %}
     {# Top-horizontal bar with account, notifictions, dashboard links #}
@@ -12,8 +15,6 @@
         <div class="page_inner">
             <div class="row justify-content-between">
                 {% include "oscar/partials/brand.html" %}
-                {# Mini-basket wrapped in a block so some templates can now display it #}
-                {% block mini_basket %}{% endblock %}
             </div>
         </div>
         {% block navigation %}
@@ -44,23 +45,4 @@
     {% endblock %}
 
     {% include "oscar/partials/footer.html" %}
-{% endblock %}
-
-{# Local scripts #}
-{% block scripts %}
-    {{ block.super }}
-    <!-- Twitter Bootstrap -->
-    <script src="{% static "oscar/js/bootstrap4/bootstrap.bundle.js" %}"></script>
-    <!-- Oscar -->
-    <script src="{% static "oscar/js/oscar/ui.js" %}"></script>
-{% endblock %}
-
-{% block extrascripts %}
-    {% include "oscar/partials/extrascripts.html" %}
-    {{ block.super }}
-{% endblock %}
-
-{% block onbodyload %}
-    {{ block.super }}
-    oscar.init();
 {% endblock %}

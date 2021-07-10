@@ -29,13 +29,14 @@
         {% endblock %}
     </head>
 
-    <body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}"
-          style="background-image: url('{% static 'oscar/assets/img/bg-masthead.jpg' %}');
+    <body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}bg-dark{% endblock %}"
+          style="
+                background-image: url('{% static 'oscar/assets/img/bg-masthead.jpg' %}');
                 background-repeat: no-repeat;
-                background-color: black;
                 background-position: center;
+
                 background-size: cover;
-                height: 60rem;">
+                ">
         {# Main content goes in this 'layout' block #}
         {% block layout %}{% endblock %}
 

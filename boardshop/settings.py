@@ -76,7 +76,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'oscarapi',
 
-    'plus.shipping.apps.ShippingConfig'
+    'plus.shipping.apps.ShippingConfig',
+    # 'plus.address.apps.AddressConfig',
 ]
 
 SITE_ID = 1
